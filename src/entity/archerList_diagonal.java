@@ -32,7 +32,6 @@ public class archerList_diagonal {
 		for (int i = 0; i < archerDiagonalList.size(); i++) {		
 			if (archerDiagonalList.get(i).completed) {
 				archerDiagonalList.remove(i);
-				System.out.println("Yessss");
 			}
 		}
 	}

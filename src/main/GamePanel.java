@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 import controller.keyHandler;
 import controller.mouseController;
+import entity.enermy;
+import entity.enermyList;
 import entity.fire;
 import entity.leaf;
 import entity.water;
@@ -44,9 +46,20 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	//Initialize some objects
 	water waterWarrior = new water(this, keyH, 1);
-	wind windWarrior = new wind(this, keyH, 2);
+	wind windWarrior = new wind(this, keyH, 1);
 	leaf leafWarrior = new leaf(this, keyH, 1);
-	fire fireWarrior = new fire(this, keyH, 2);
+	fire fireWarrior = new fire(this, keyH, 1);
+	
+	public int playerX, playerY;
+	public boolean isHitting = false;
+	public boolean isDefending = false;
+	public boolean isBeingHit = false;
+	public boolean isBeingHitButDefend = false;
+	
+	public int map = 1;
+	public int HP_Left = 20;
+
+	enermyList enerList = new enermyList(this);
 
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -100,10 +113,12 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void update() {
 		//Put Update function here
-		waterWarrior.update();
+		//waterWarrior.update();
 		windWarrior.update();
-		leafWarrior.update();
-		fireWarrior.update();
+		//leafWarrior.update();
+		//fireWarrior.update();
+
+		enerList.update();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -114,9 +129,11 @@ public class GamePanel extends JPanel implements Runnable {
 		drawBackground(g2);
 		
 		//waterWarrior.draw(g2);
-		//windWarrior.draw(g2);
-		leafWarrior.draw(g2);
+		windWarrior.draw(g2);
+		//leafWarrior.draw(g2);
 		//fireWarrior.draw(g2);
+
+		enerList.draw(g2);
 		
 		g2.dispose();
 		try {
@@ -150,5 +167,11 @@ public class GamePanel extends JPanel implements Runnable {
 			e.printStackTrace();
 		}
 		g2.drawImage(background, 0, 0, screenWidth, screenHeight, null);
+	}
+	
+	public void checkHiting() {
+		if (keyH.OKey) {
+			isDefending = true;
+		}
 	}
 }

@@ -9,7 +9,6 @@ public class Entity {
 	public int x, y;
 	public float speed;
 	public BufferedImage HP; // HP of entities
-	public int HP_Left;
 	
 	ArrayList<BufferedImage> atk1 = new ArrayList<BufferedImage>();
 	ArrayList<BufferedImage> atk2 = new ArrayList<BufferedImage>();

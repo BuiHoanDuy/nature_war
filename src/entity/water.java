@@ -25,10 +25,10 @@ public class water extends Entity {
 		setDefaultValue(colorHP);
 		getImage();
 
-		speed = 8;
+		speed = 10;
 		x = 0;
 		y = 675 - gp.tileSize * 4;
-		HP_Left = 20;
+		gp.HP_Left = 20;
 	}
 
 	public void setDefaultValue(int colorHP) {
@@ -43,15 +43,19 @@ public class water extends Entity {
 	}
 
 	public void update() {
-		
+		gp.playerX = x + 220;
+		gp.playerY = y + 130;
+		if (gp.isBeingHitButDefend) {
+			x --;
+		}
 	}
-	
+
 	public void draw(Graphics2D g2) {
-		g2.drawImage(HP, x + 170, y + gp.tileSize * 4, HP_Left * 3, 20, null);
-		
+		g2.drawImage(HP, x + 170, y + gp.tileSize * 4, gp.HP_Left * 3, 20, null);
+
 		// drawIdle(g2);
 
-		if (HP_Left <= 0) {
+		if (gp.HP_Left <= 0) {
 			drawDeath(g2);
 		} else {
 
@@ -97,13 +101,15 @@ public class water extends Entity {
 			}
 			if (!KeyH.upLeft && !KeyH.upRight && !KeyH.downLeft && !KeyH.downRight && !KeyH.upPressed
 					&& !KeyH.downPressed && !KeyH.leftPressed && !KeyH.rightPressed && !KeyH.JKey && !KeyH.KKey
-					&& !KeyH.LKey && !KeyH.UKey && !KeyH.IKey && !KeyH.OKey && !KeyH.HKey) {
+					&& !KeyH.LKey && !KeyH.UKey && !KeyH.IKey && !KeyH.OKey && !KeyH.HKey && !gp.isBeingHit) {
 				drawIdle(g2);
 			}
 		}
 
 		// skills:
-		if (KeyH.JKey == true) {
+		if (gp.isBeingHit == true) {
+			drawTakeHit(g2);
+		} else if (KeyH.JKey == true) {
 			drawATK1(g2);
 		} else if (KeyH.KKey == true) {
 			drawATK2(g2);
@@ -127,11 +133,13 @@ public class water extends Entity {
 	}
 
 	public void drawATK1(Graphics2D g2) {
-		if (i+1 >= atk1.size()) {
+		if (i + 1 >= atk1.size()) {
 			KeyH.JKey = false;
+			gp.isHitting = false;
 			i = 0;
 		} else {
 			i++;
+			gp.isHitting = true;
 		}
 		g2.drawImage(atk1.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -139,9 +147,11 @@ public class water extends Entity {
 	public void drawATK2(Graphics2D g2) {
 		if (i + 1 >= atk2.size()) {
 			KeyH.KKey = false;
+			gp.isHitting = false;
 			i = 0;
 		} else {
 			i++;
+			gp.isHitting = true;
 		}
 		g2.drawImage(atk2.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -149,9 +159,11 @@ public class water extends Entity {
 	public void drawATK3(Graphics2D g2) {
 		if (i + 1 >= atk3.size()) {
 			KeyH.LKey = false;
+			gp.isHitting = false;
 			i = 0;
 		} else {
 			i++;
+			gp.isHitting = true;
 		}
 		g2.drawImage(atk3.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -159,9 +171,11 @@ public class water extends Entity {
 	public void drawAirATK(Graphics2D g2) {
 		if (i + 1 >= air_atk.size()) {
 			KeyH.UKey = false;
+			gp.isHitting = false;
 			i = 0;
 		} else {
 			i++;
+			gp.isHitting = true;
 		}
 		g2.drawImage(air_atk.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -169,9 +183,11 @@ public class water extends Entity {
 	public void drawSpATK(Graphics2D g2) {
 		if (i + 1 >= sp_atk.size()) {
 			KeyH.IKey = false;
+			gp.isHitting = false;
 			i = 0;
 		} else {
 			i++;
+			gp.isHitting = true;
 		}
 		g2.drawImage(sp_atk.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -179,9 +195,11 @@ public class water extends Entity {
 	public void drawDefend(Graphics2D g2) {
 		if (i + 1 >= defend.size()) {
 			KeyH.OKey = false;
+			gp.isDefending = false;
 			i = 0;
 		} else {
 			i++;
+			gp.isDefending = true; gp.isBeingHitButDefend = false;
 		}
 		g2.drawImage(defend.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -226,7 +244,7 @@ public class water extends Entity {
 		if (i + 1 >= takeHit.size()) {
 			i = 0;
 		} else {
-			i++;
+			i++; gp.isBeingHit = false;
 		}
 		g2.drawImage(takeHit.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
