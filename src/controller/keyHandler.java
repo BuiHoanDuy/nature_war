@@ -40,25 +40,36 @@ public class keyHandler implements KeyListener {
 			direction = "right";
 		}
 		if (code == KeyEvent.VK_J) {
-			JKey = true;
+			if (gp.jTime <= 0) {
+				JKey = true;
+				gp.jTime = 10;
+			}
 		}
 		if (code == KeyEvent.VK_K) {
-			KKey = true;
+			if (gp.kTime <= 0) {
+				KKey = true;
+				gp.kTime = 300;
+			}
 		}
 		if (code == KeyEvent.VK_L) {
-			LKey = true;
+			if (gp.lTime <= 0)
+				LKey = true;
+				gp.lTime = 400;
 		}
 		if (code == KeyEvent.VK_U) {
-			UKey = true;
+			if (gp.uTime <= 0)
+				UKey = true;
+				gp.uTime = 400;
 		}
 		if (code == KeyEvent.VK_I) {
-			IKey = true;
+			if (gp.iTime <= 0)
+				IKey = true;
+				gp.iTime = 1000;
 		}
 		if (code == KeyEvent.VK_O) {
-			OKey = true;
-		}
-		if (code == KeyEvent.VK_H) {
-			HKey = true;
+			if (gp.oTime <= 0)
+				OKey = true;
+				gp.oTime = 100;
 		}
 		if (upPressed && leftPressed) {
 			upLeft = true;
@@ -79,6 +90,7 @@ public class keyHandler implements KeyListener {
 
 		int code = e.getKeyCode();
 
+
 		if (code == KeyEvent.VK_W) {
 			upPressed = true;
 		}
@@ -94,25 +106,36 @@ public class keyHandler implements KeyListener {
 			direction = "right";
 		}
 		if (code == KeyEvent.VK_J) {
-			JKey = true;
+			if (gp.jTime <= 0) {
+				JKey = true;
+				gp.jTime = 10;
+			}
 		}
 		if (code == KeyEvent.VK_K) {
-			KKey = true;
+			if (gp.kTime <= 0) {
+				KKey = true;
+				gp.kTime = 300;
+			}
 		}
 		if (code == KeyEvent.VK_L) {
-			LKey = true;
+			if (gp.lTime <= 0)
+				LKey = true;
+				gp.lTime = 400;
 		}
 		if (code == KeyEvent.VK_U) {
-			UKey = true;
+			if (gp.uTime <= 0)
+				UKey = true;
+				gp.uTime = 400;
 		}
 		if (code == KeyEvent.VK_I) {
-			IKey = true;
+			if (gp.iTime <= 0)
+				IKey = true;
+				gp.iTime = 1000;
 		}
 		if (code == KeyEvent.VK_O) {
-			OKey = true;
-		}
-		if (code == KeyEvent.VK_H) {
-			HKey = true;
+			if (gp.oTime <= 0)
+				OKey = true;
+				gp.oTime = 100;
 		}
 		if (upPressed && leftPressed) {
 			upLeft = true;

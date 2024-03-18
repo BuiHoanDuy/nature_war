@@ -121,7 +121,7 @@ public class enermy {
 			y --;
 		}
 		
-		if (x < gp.playerX + 60 && x > gp.playerX - 92 && y > gp.playerY - 40 && y < gp.playerY  + 50) {
+		if (x < gp.playerX + 40 && x > gp.playerX - 92 && y > gp.playerY - 40 && y < gp.playerY  + 50) { // past: x < gp.playerX = 60;
 			isIn = true;
 		} else isIn = false;
 	}

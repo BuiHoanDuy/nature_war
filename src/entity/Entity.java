@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 public class Entity {
 	public int x, y;
 	public float speed;
-	public BufferedImage HP; // HP of entities
 	
 	ArrayList<BufferedImage> atk1 = new ArrayList<BufferedImage>();
 	ArrayList<BufferedImage> atk2 = new ArrayList<BufferedImage>();

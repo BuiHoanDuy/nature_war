@@ -32,14 +32,7 @@ public class fire extends Entity {
 	}
 
 	public void setDefaultValue(int colorHP) {
-		try {
-			if (colorHP == 1)
-				HP = ImageIO.read(getClass().getResourceAsStream("/res/green_HP.png"));
-			else
-				HP = ImageIO.read(getClass().getResourceAsStream("/res/red_HP.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 	public void update() {
@@ -52,14 +45,12 @@ public class fire extends Entity {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.drawImage(HP, x + 170, y + gp.tileSize * 4, gp.HP_Left * 3, 20, null);
 
 		// drawIdle(g2);
 
 		if (gp.HP_Left <= 0) {
 			drawDeath(g2);
 		} else {
-
 			if (KeyH.upPressed) {
 				y -= speed;
 				if (!KeyH.upRight && !KeyH.downRight && !KeyH.upLeft && !KeyH.downLeft)

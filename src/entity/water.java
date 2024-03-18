@@ -32,33 +32,25 @@ public class water extends Entity {
 	}
 
 	public void setDefaultValue(int colorHP) {
-		try {
-			if (colorHP == 1)
-				HP = ImageIO.read(getClass().getResourceAsStream("/res/green_HP.png"));
-			else
-				HP = ImageIO.read(getClass().getResourceAsStream("/res/red_HP.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		
 	}
 
 	public void update() {
 		gp.playerX = x + 220;
 		gp.playerY = y + 130;
 		if (gp.isBeingHitButDefend) {
-			x --;
+			x--;
 		}
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.drawImage(HP, x + 170, y + gp.tileSize * 4, gp.HP_Left * 3, 20, null);
 
 		// drawIdle(g2);
 
 		if (gp.HP_Left <= 0) {
 			drawDeath(g2);
 		} else {
-
 			if (KeyH.upPressed) {
 				y -= speed;
 				if (!KeyH.upRight && !KeyH.downRight && !KeyH.upLeft && !KeyH.downLeft)
@@ -199,7 +191,8 @@ public class water extends Entity {
 			i = 0;
 		} else {
 			i++;
-			gp.isDefending = true; gp.isBeingHitButDefend = false;
+			gp.isDefending = true;
+			gp.isBeingHitButDefend = false;
 		}
 		g2.drawImage(defend.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
@@ -244,7 +237,8 @@ public class water extends Entity {
 		if (i + 1 >= takeHit.size()) {
 			i = 0;
 		} else {
-			i++; gp.isBeingHit = false;
+			i++;
+			gp.isBeingHit = false;
 		}
 		g2.drawImage(takeHit.get(i), x, y, gp.tileSize * 8, gp.tileSize * 4, null);
 	}
